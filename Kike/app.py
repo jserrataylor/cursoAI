@@ -23,30 +23,31 @@ try:
 except Exception as e:
     st.write(f"Error listando directorio: {e}")
 
-@st.cache(allow_output_mutation=True)
+# 4. Función para cargar el modelo, cacheando como recurso
+@st.cache_resource
 def load_model(path):
     if not os.path.exists(path):
         st.error(f"❌ No se encontró `best_model.pkl` en:\n```\n{path}\n```")
         return None
     return joblib.load(path)
 
-# 4. Cargar modelo
+# 5. Cargar modelo
 model = load_model(MODEL_PATH)
 if model is None:
     st.stop()
 
-# 5. Panel lateral: inputs del usuario
+# 6. Panel lateral: inputs del usuario
 st.sidebar.header("Parámetros de entrada")
 age     = st.sidebar.slider("Edad",  18, 90, 30)
 income  = st.sidebar.number_input("Ingresos anuales (USD)", 0.0, 1e6, 50000.0, step=1000.0)
 visits  = st.sidebar.slider("Número de visitas al sitio", 0, 100, 5)
 
-# 6. Preparar y predecir
+# 7. Preparar y predecir
 X_new = np.array([[age, income, visits]])
 prob   = model.predict_proba(X_new)[0, 1]
 pred   = model.predict(X_new)[0]
 
-# 7. Mostrar resultados
+# 8. Mostrar resultados
 st.subheader("Resultados de la predicción")
 st.markdown(f"- **Probabilidad de compra:** {prob:.2%}")
 st.markdown(f"- **Predicción:** {'🛒 Comprar' if pred == 1 else '🚫 No comprar'}")
