@@ -17,7 +17,7 @@ model = joblib.load("best_model.pkl")
 
 # 2. Ruta al modelo en la misma carpeta
 # MODEL_PATH = os.path.join(CURRENT_DIR, "best_model.pkl")
-'''
+
 # 3. Mostrar lista de archivos para verificar que está donde esperamos
 # st.write("**Archivos en la carpeta de la app:**")
 # try:
