@@ -15,7 +15,7 @@ y predice la probabilidad de que un cliente compre un producto en función de:
 # Función para cargar y cachear el modelo
 @st.cache(allow_output_mutation=True)
 def load_model():
-    return joblib.load("best_model.pkl")
+    return joblib.load("/Kike/best_model.pkl")
 
 model = load_model()
 
