@@ -10,18 +10,20 @@ App que carga un modelo previamente entrenado (`best_model.pkl`)
 y predice si un cliente comprará un producto según sus datos.
 """)
 
+model = joblib.load("best_model.pkl")
+
 # 1. Localizar la carpeta del script
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+# CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 2. Ruta al modelo en la misma carpeta
-MODEL_PATH = os.path.join(CURRENT_DIR, "best_model.pkl")
-
+# MODEL_PATH = os.path.join(CURRENT_DIR, "best_model.pkl")
+'''
 # 3. Mostrar lista de archivos para verificar que está donde esperamos
-st.write("**Archivos en la carpeta de la app:**")
-try:
-    st.write(os.listdir(CURRENT_DIR))
-except Exception as e:
-    st.write(f"Error listando directorio: {e}")
+# st.write("**Archivos en la carpeta de la app:**")
+# try:
+#     st.write(os.listdir(CURRENT_DIR))
+# except Exception as e:
+#     st.write(f"Error listando directorio: {e}")
 
 # 4. Función para cargar el modelo, cacheando como recurso
 @st.cache_resource
